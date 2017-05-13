@@ -10,7 +10,7 @@ Gem::Specification.new do |spec|
   spec.email         = ["jd_gonzales@icloud.com"]
 
   spec.summary       = %q{Learning Web Framework}
-  spec.description   = %q{Rails inspired framework}
+  spec.description   = %q{Rails inspired framework based on rack}
   spec.homepage      = "https://github.com/Bloc/bloc_works"
   spec.license       = "MIT"
 
@@ -34,4 +34,5 @@ Gem::Specification.new do |spec|
   spec.add_development_dependency "rake", "~> 10.0"
   spec.add_development_dependency "minitest", "~> 5.0"
   spec.add_development_dependency "rack", "~> 1.6"
+  spec.add_runtime_dependency "erubis", "~> 2.7"
 end
