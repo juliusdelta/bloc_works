@@ -10,7 +10,7 @@ module BlocWorks
       filename = File.join("app", "views", controller_dir, "#{view}.html.erb")
       template = File.read(filename)
       eruby = Erubis::Eruby.new(template)
-      eruby.result(locals.merg(env: @env))
+      eruby.result(locals.merge(env: @env))
     end
 
     def controller_dir
