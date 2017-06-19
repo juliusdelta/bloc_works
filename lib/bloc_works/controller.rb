@@ -10,6 +10,14 @@ module BlocWorks
       filename = File.join("app", "views", controller_dir, "#{view}.html.erb")
       template = File.read(filename)
       eruby = Erubis::Eruby.new(template)
+
+      self.instance_variables.each do |name|
+        key = name.to_s[1..-1]
+        value = instance_variable_get(name.to_s)
+
+        locals[key] = value
+      end
+
       eruby.result(locals.merge(env: @env))
     end
 

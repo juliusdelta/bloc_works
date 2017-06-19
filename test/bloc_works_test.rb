@@ -1,9 +1,12 @@
 require 'test_helper'
 
+$LOAD_PATH << File.join(File.dirname(__FILE__), "..", "test", "controllers")
+
 class BlocWorksTest < Minitest::Test
+  include Rack::Test::Methods
 
   ## Connect to a Bloc Works
-  def blocworks_connect
+  def app
     BlocWorks::Application.new
   end
 
@@ -13,6 +16,12 @@ class BlocWorksTest < Minitest::Test
 
   # Check http Status
   def test_call
-    assert blocworks_connect, 200
+    assert app, 200
+  end
+
+  def test_controller_and_action
+    get '/test/welcome'
+    assert last_response.ok?
+    assert_equal 'Welcome', last_response.body
   end
 end

@@ -2,3 +2,4 @@ $LOAD_PATH.unshift File.expand_path('../../lib', __FILE__)
 require 'bloc_works'
 
 require 'minitest/autorun'
+require 'rack/test'
