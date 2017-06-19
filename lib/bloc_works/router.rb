@@ -67,6 +67,26 @@ module BlocWorks
                     options: options })
     end
 
+    def resources(controller)
+      controller_string = controller.to_s
+      map "", "#{controller_string}#welcome"
+      map ":controller/:id/:action"
+      map ":controller/:action"
+      map ":controller/:id", default: { "action" => "show" }
+      map ":controller", default: { "action" => "index" }
+    end
+
+    def set_controller_action (rule, params)
+      if rule[:destination]
+        return get_destination(rule[:destination], params)
+      else
+        controller = params["controller"]
+        action = params["action"]
+        return get_destination("#{controller}##{action}", params)
+      end
+
+    end
+
     def look_up_url(url)
       @rules.each do |rule|
         rule.match = rule[:regex].match(url)
